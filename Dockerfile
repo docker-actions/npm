@@ -31,7 +31,7 @@ RUN if [ "x$(ls ${BUILD_DEBS}/)" = "x" ]; then \
 RUN echo "cafile=/etc/ssl/certs/ca-certificates.crt" > ${ROOTFS}/etc/npmrc
 
 # Fake user (since it's going to be overriden)
-RUN echo "root:x:0:0:root:/home:/bin/bash" > ${ROOTFS}/etc/passwd \
+RUN echo "root:x:0:0:root:/container_user_home:/bin/bash" > ${ROOTFS}/etc/passwd \
     && echo "root:x:0:" > ${ROOTFS}/etc/group
 
 # npm assumes nobody as user while calling process.getuid
@@ -53,7 +53,7 @@ RUN mv ${ROOTFS}/sbin ${ROOTFS}/sbin.orig \
 COPY entrypoint.sh ${ROOTFS}/usr/local/bin/entrypoint.sh
 RUN chmod +x ${ROOTFS}/usr/local/bin/entrypoint.sh
 
-FROM actions/bash:4.4.18-7
+FROM actions/bash:4.4.18-8
 LABEL maintainer = "ilja+docker@bobkevic.com"
 
 ARG ROOTFS=/build/rootfs
