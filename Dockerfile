@@ -1,6 +1,6 @@
-FROM ubuntu:bionic as build
+FROM ubuntu:focal as build
 
-ARG REQUIRED_PACKAGES="npm=3.5.2-0ubuntu4 make gcc g++ sed grep"
+ARG REQUIRED_PACKAGES="npm=6.14.4* make gcc g++ sed grep"
 
 ENV ROOTFS /build/rootfs
 ENV BUILD_DEBS /build/debs
@@ -53,7 +53,7 @@ RUN mv ${ROOTFS}/sbin ${ROOTFS}/sbin.orig \
 COPY entrypoint.sh ${ROOTFS}/usr/local/bin/entrypoint.sh
 RUN chmod +x ${ROOTFS}/usr/local/bin/entrypoint.sh
 
-FROM actions/bash:4.4.18-8
+FROM actions/bash:5.0-2
 LABEL maintainer = "ilja+docker@bobkevic.com"
 
 ARG ROOTFS=/build/rootfs
