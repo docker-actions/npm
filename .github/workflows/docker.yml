@@ -11,7 +11,7 @@ on:
       - master
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ master ]
     tags: [ "*" ]
 
 jobs:
