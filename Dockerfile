@@ -1,6 +1,6 @@
 FROM ubuntu:focal as build
 
-ARG REQUIRED_PACKAGES="npm=6.14.4* make gcc g++ sed grep coreutils"
+ARG REQUIRED_PACKAGES="npm=6.14.4* make gcc g++ sed grep coreutils libpcre3"
 
 ENV ROOTFS /build/rootfs
 ENV BUILD_DEBS /build/debs
