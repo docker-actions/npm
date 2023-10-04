@@ -1,6 +1,6 @@
-FROM ubuntu:focal as build
+FROM ubuntu:jammy as build
 
-ARG REQUIRED_PACKAGES="npm=6.14.4* make gcc g++ sed grep coreutils libpcre3"
+ARG REQUIRED_PACKAGES="npm=8.5.1* make gcc g++ sed grep coreutils libpcre3"
 
 ENV ROOTFS /build/rootfs
 ENV BUILD_DEBS /build/debs
@@ -53,7 +53,7 @@ RUN mv ${ROOTFS}/sbin ${ROOTFS}/sbin.orig \
 COPY entrypoint.sh ${ROOTFS}/usr/local/bin/entrypoint.sh
 RUN chmod +x ${ROOTFS}/usr/local/bin/entrypoint.sh
 
-FROM actions/bash:5.0-2
+FROM actions/bash:5.1.16-1-jammy
 LABEL maintainer = "ilja+docker@bobkevic.com"
 
 ARG ROOTFS=/build/rootfs
